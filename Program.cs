@@ -39,14 +39,39 @@ namespace UserStoryReader
 
                 Console.WriteLine();
 
-                // Read user stories
-                Console.WriteLine("Reading user stories from repository...");
-                var userStories = await gitHubService.GetUserStoriesAsync();
+                // Ask user where to read user stories from
+                Console.WriteLine("Where would you like to read user stories from?");
+                Console.WriteLine("1. GitHub Issues (with 'user-story' label)");
+                Console.WriteLine("2. JSON files in 'user-stories' directory");
+                Console.Write("\nSelect option (1 or 2): ");
+                var choice = Console.ReadLine();
+
+                List<UserStory> userStories;
+
+                if (choice == "1")
+                {
+                    // Read from GitHub Issues
+                    Console.WriteLine("\nReading user stories from GitHub Issues...");
+                    userStories = await gitHubService.GetUserStoriesFromIssuesAsync();
+                }
+                else
+                {
+                    // Read from JSON files
+                    Console.WriteLine("\nReading user stories from JSON files...");
+                    userStories = await gitHubService.GetUserStoriesAsync();
+                }
 
                 if (userStories.Count == 0)
                 {
-                    Console.WriteLine("No user stories found in the repository.");
-                    Console.WriteLine("Make sure you have JSON files in the 'user-stories' directory.");
+                    Console.WriteLine("No user stories found.");
+                    if (choice == "1")
+                    {
+                        Console.WriteLine("Make sure you have issues with the 'user-story' label in your repository.");
+                    }
+                    else
+                    {
+                        Console.WriteLine("Make sure you have JSON files in the 'user-stories' directory.");
+                    }
                     return;
                 }
 
