@@ -159,13 +159,24 @@ namespace UserStoryReader.Services
                 var allIssues = await _client.Issue.GetAllForRepository(_owner, _repository, issueRequest);
                 Console.WriteLine($"Retrieved {allIssues.Count} total issues");
                 
-                // Filter issues that have 'user-story' or 'enhancement' label and title contains [USER STORY]
+                // Filter issues that have 'user-story' or 'enhancement' label OR title contains [USER STORY]
+                // Made more flexible to work even without labels
                 var issues = allIssues.Where(i => 
-                    (i.Labels.Any(l => l.Name == "user-story" || l.Name == "enhancement")) &&
+                    i.Labels.Any(l => l.Name == "user-story" || l.Name == "enhancement") ||
                     i.Title.Contains("[USER STORY]", StringComparison.OrdinalIgnoreCase)
                 ).ToList();
                 
                 Console.WriteLine($"Found {issues.Count} user story issues");
+                
+                if (issues.Count == 0 && allIssues.Count > 0)
+                {
+                    Console.WriteLine("\n⚠️  No user stories found.");
+                    Console.WriteLine("   User story issues should have either:");
+                    Console.WriteLine("   - A 'user-story' or 'enhancement' label, OR");
+                    Console.WriteLine("   - '[USER STORY]' in the title");
+                    Console.WriteLine($"\n   Available labels in repository: {string.Join(", ", allIssues.SelectMany(i => i.Labels.Select(l => l.Name)).Distinct())}");
+                    Console.WriteLine($"   Total issues in repository: {allIssues.Count}");
+                }
 
                 foreach (var issue in issues)
                 {

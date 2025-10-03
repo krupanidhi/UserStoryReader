@@ -1,5 +1,9 @@
 # UserStoryReader
 
+> **⚠️ Team Member?** Get the shared `appsettings.json` from your team lead and see [SHARED_SETUP.md](SHARED_SETUP.md)
+> 
+> **⚠️ New User?** If you're getting "No user stories found" error, see [SETUP_GUIDE.md](SETUP_GUIDE.md) for detailed setup instructions.
+
 A C# console application that reads and manages user stories from GitHub repositories. Supports reading from both GitHub Issues and JSON files.
 
 ## Features
