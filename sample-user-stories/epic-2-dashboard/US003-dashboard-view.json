@@ -1,0 +1,21 @@
+{
+  "id": "US003",
+  "title": "User Dashboard",
+  "description": "As a logged-in user, I want to see a personalized dashboard so that I can quickly access relevant information and features.",
+  "acceptanceCriteria": [
+    "Dashboard displays user's name and profile picture",
+    "Recent activity feed is shown",
+    "Quick action buttons are available",
+    "Key metrics are displayed in cards",
+    "Navigation menu is accessible",
+    "Dashboard is responsive on mobile devices"
+  ],
+  "priority": "Medium",
+  "status": "Done",
+  "assignee": "Mike Johnson",
+  "estimatedHours": 16,
+  "tags": ["dashboard", "ui", "responsive"],
+  "epic": "epic-2-dashboard",
+  "createdDate": "2024-01-18T11:00:00Z",
+  "lastModified": "2024-01-25T16:45:00Z"
+}

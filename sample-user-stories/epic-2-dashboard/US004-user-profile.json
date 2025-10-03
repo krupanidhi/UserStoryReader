@@ -1,0 +1,21 @@
+{
+  "id": "US004",
+  "title": "User Profile Management",
+  "description": "As a user, I want to view and edit my profile information so that I can keep my account details up to date.",
+  "acceptanceCriteria": [
+    "User can view current profile information",
+    "User can edit name, email, and phone number",
+    "User can upload and change profile picture",
+    "Form validation prevents invalid data entry",
+    "Changes are saved successfully with confirmation",
+    "User can cancel changes and revert to original values"
+  ],
+  "priority": "Medium",
+  "status": "In Progress",
+  "assignee": "Sarah Wilson",
+  "estimatedHours": 10,
+  "tags": ["profile", "forms", "validation"],
+  "epic": "epic-2-dashboard",
+  "createdDate": "2024-01-19T14:00:00Z",
+  "lastModified": "2024-01-22T10:15:00Z"
+}

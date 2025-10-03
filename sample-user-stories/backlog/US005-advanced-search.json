@@ -1,0 +1,21 @@
+{
+  "id": "US005",
+  "title": "Advanced Search",
+  "description": "As a user, I want to perform advanced searches with filters so that I can quickly find specific information.",
+  "acceptanceCriteria": [
+    "User can enter search terms in a search box",
+    "Multiple filter options are available (date, category, status)",
+    "Search results are displayed with pagination",
+    "User can sort results by relevance, date, or title",
+    "Search history is saved for quick access",
+    "No results message is shown when appropriate"
+  ],
+  "priority": "Low",
+  "status": "Backlog",
+  "assignee": "",
+  "estimatedHours": 20,
+  "tags": ["search", "filters", "pagination"],
+  "epic": "backlog",
+  "createdDate": "2024-01-20T16:00:00Z",
+  "lastModified": "2024-01-20T16:00:00Z"
+}

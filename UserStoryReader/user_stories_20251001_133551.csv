@@ -1,0 +1,2 @@
+ID,Title,Description,Status,Priority,Assignee,EstimatedHours,Epic,Tags,AcceptanceCriteria
+"#1","","As a developer, I want To scan C# files in a directory for specific code patterns, so that I can identify potential code issues and improvements","Open","Medium","",0,"Unassigned","enhancement; user-story","login as csoman; click on tasks; search for specific task id"

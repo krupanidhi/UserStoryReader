@@ -1,0 +1,20 @@
+{
+  "id": "US001",
+  "title": "User Login",
+  "description": "As a user, I want to log in to the system so that I can access my account and personal data securely.",
+  "acceptanceCriteria": [
+    "User can enter username and password on the login form",
+    "System validates credentials against the database",
+    "User is redirected to dashboard on successful login",
+    "Error message is displayed for invalid credentials",
+    "Account is locked after 3 failed attempts"
+  ],
+  "priority": "High",
+  "status": "In Progress",
+  "assignee": "John Doe",
+  "estimatedHours": 8,
+  "tags": ["authentication", "security", "frontend"],
+  "epic": "epic-1-authentication",
+  "createdDate": "2024-01-15T10:00:00Z",
+  "lastModified": "2024-01-20T14:30:00Z"
+}
