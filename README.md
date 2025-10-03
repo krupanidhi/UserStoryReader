@@ -1,66 +1,141 @@
-# User Story Reader
+# UserStoryReader
 
-A C# utility to read user stories from a GitHub repository.
+A C# console application that reads and manages user stories from GitHub repositories. Supports reading from both GitHub Issues and JSON files.
 
-## Repository Structure
+## Features
 
-This project demonstrates how to:
-1. Structure user stories in a GitHub repository
-2. Read user stories programmatically using C# and GitHub API
-3. Parse and display user story data
+- ✅ Read user stories from **GitHub Issues** (with 'user-story' label)
+- ✅ Read user stories from **JSON files** in repository
+- ✅ Filter by status, priority, and assignee
+- ✅ Search by keyword
+- ✅ Export to CSV
+- ✅ Group stories by Epic
+- ✅ Interactive console menu
 
-## Setup Instructions
+## Setup
 
-### 1. Create GitHub Repository
+### 1. Prerequisites
 
-1. Create a new repository on GitHub
-2. Add user stories in the `user-stories/` directory
-3. Use JSON or Markdown format for user stories
+- .NET 8.0 SDK
+- GitHub Personal Access Token
 
-### 2. GitHub Personal Access Token
+### 2. Create GitHub Personal Access Token
 
-1. Go to GitHub Settings > Developer settings > Personal access tokens
-2. Generate a new token with `repo` scope
-3. Copy the token for use in the application
+1. Go to: https://github.com/settings/tokens/new
+2. Name: `UserStoryReader`
+3. Scopes: `repo` (full control of repositories)
+4. Click **Generate token**
+5. Copy the token
 
-### 3. Run the Application
+### 3. Configure Application
 
-```bash
-dotnet run --project UserStoryReader
-```
-
-## User Story Format
-
-User stories are stored as JSON files with the following structure:
+1. Copy `appsettings.example.json` to `appsettings.json`
+2. Update the configuration:
 
 ```json
 {
-  "id": "US001",
-  "title": "User Login",
-  "description": "As a user, I want to log in to the system so that I can access my account",
-  "acceptanceCriteria": [
-    "User can enter username and password",
-    "System validates credentials",
-    "User is redirected to dashboard on success"
-  ],
-  "priority": "High",
-  "status": "In Progress",
-  "assignee": "John Doe",
-  "estimatedHours": 8,
-  "tags": ["authentication", "security"]
+  "GitHub": {
+    "Token": "your-github-token-here",
+    "Owner": "krupanidhi",
+    "Repository": "UserStoryReader"
+  }
 }
 ```
 
-## Directory Structure
+**Or** set environment variable:
+```powershell
+$env:GITHUB_TOKEN = "your-token-here"
+```
+
+### 4. Build and Run
+
+```powershell
+dotnet build
+dotnet run
+```
+
+## Usage
+
+### Reading from GitHub Issues
+
+1. Create issues in your repository with the **'user-story'** label
+2. Use the user story template (`.github/ISSUE_TEMPLATE/user-story.md`)
+3. Run the application and select option **1** (GitHub Issues)
+
+### Reading from JSON Files
+
+1. Create JSON files in the `user-stories` directory of your repository
+2. Run the application and select option **2** (JSON files)
+
+### Example User Story Issue Format
+
+```markdown
+## User Story
+**As a** developer
+**I want** to read user stories from GitHub Issues
+**So that** I can manage stories directly in GitHub
+
+## Description
+Enhance the UserStoryReader to parse GitHub Issues...
+
+## Acceptance Criteria
+- [ ] Read issues with 'user-story' label
+- [ ] Parse issue body into UserStory model
+- [ ] Display stories in console
+
+## Story Points
+**Estimate:** 8
+
+## Priority
+**Priority:** High
+
+## Additional Notes
+Epic: Core Features
+Tags: enhancement, github-api
+```
+
+## Interactive Menu Options
+
+1. **View story details** - See full details of a specific story
+2. **Filter by status** - Show stories by status (Open/Closed)
+3. **Filter by priority** - Show stories by priority level
+4. **Filter by assignee** - Show stories assigned to specific users
+5. **Search by keyword** - Search across title, description, and criteria
+6. **Export to CSV** - Export all stories to CSV file
+
+## Dependencies
+
+- **Octokit** (9.0.0) - GitHub API client
+- **Newtonsoft.Json** (13.0.3) - JSON parsing
+- **Microsoft.Extensions.Configuration** (8.0.0) - Configuration management
+
+## Project Structure
 
 ```
-user-stories/
-├── epic-1-authentication/
-│   ├── US001-user-login.json
-│   └── US002-password-reset.json
-├── epic-2-dashboard/
-│   ├── US003-dashboard-view.json
-│   └── US004-user-profile.json
-└── backlog/
-    └── US005-advanced-search.json
+UserStoryReader/
+├── Models/
+│   └── UserStory.cs          # User story data model
+├── Services/
+│   └── GitHubService.cs      # GitHub API integration
+├── Program.cs                # Main application logic
+├── appsettings.json          # Configuration (gitignored)
+└── appsettings.example.json  # Configuration template
 ```
+
+## Security Notes
+
+⚠️ **Never commit `appsettings.json` with your GitHub token!**
+
+- The `.gitignore` file excludes `appsettings.json`
+- Use environment variables for CI/CD pipelines
+- Revoke tokens immediately if accidentally exposed
+
+## Contributing
+
+1. Create user stories as GitHub Issues with 'user-story' label
+2. Follow the user story template format
+3. Test changes locally before committing
+
+## License
+
+MIT License
